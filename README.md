@@ -10,7 +10,9 @@ IA: undetermined
 
 Datos geográficos: Google maps platform
 
-DB: MongoDB. 
+DB: PostgresSQL. 
 
-*Se hace uso de Mongop DB debido a que, en caso de que la IA decida agregar nuevos campos a la table de intinerarios, esta no se rompa*
+*Se hace uso de PostgresSQL debido a que, en caso de que la IA decida agregar nuevos campos a la table de intinerarios, esta no se rompa*
 Viaje -> Dias -> Actividades -> Detalles. || (IA) Recomendación de ropa ->.
+
+*De igual forma postgresSQL maneja integridad y relacionalidad de datos además de la flexibilidad para las tablas de intinerarios*
