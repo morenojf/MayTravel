@@ -1,4 +1,5 @@
-Web app implementing an AI model entrained from 0
+"MayTravel: Asistente de Planificación Turística basado en IA Generativa."
+
 ### Título y Descripción: ¿Qué hace el proyecto? MayTravel
 
 Requisitos Previos: Versión de Node.js, gestor de paquetes (npm o yarn).
