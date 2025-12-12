@@ -1,17 +1,16 @@
 "MayTravel: Asistente de Planificación Turística basado en IA Generativa."
 
-### Título y Descripción: ¿Qué hace el proyecto? MayTravel
+Herramientas: 
 
-Requisitos Previos: Versión de Node.js, gestor de paquetes (npm o yarn).
+Front-end: React
 
-Instalación: Comandos para clonar el repositorio e instalar dependencias (npm install).
+Back-end: Node.js (Express)
 
-Uso/Ejecución: Comandos para iniciar el proyecto (npm start, etc.).
+IA: undetermined
 
-Estructura del Modelo (Detalle IA):
+Datos geográficos: Google maps platform
 
-¿Qué algoritmo se usa? (ej: Red Neuronal Convolucional para imágenes).
+DB: MongoDB. 
 
-¿De dónde vienen los datos?
-
-Métricas de rendimiento.
+*Se hace uso de Mongop DB debido a que, en caso de que la IA decida agregar nuevos campos a la table de intinerarios, esta no se rompa*
+Viaje -> Dias -> Actividades -> Detalles. || (IA) Recomendación de ropa ->.
