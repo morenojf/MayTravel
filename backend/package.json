@@ -1,0 +1,38 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "maytravel backend",
+  "keywords": [
+    "MayTravel",
+    "IA"
+  ],
+  "homepage": "https://github.com/morenojf/MayTravel#readme",
+  "bugs": {
+    "url": "https://github.com/morenojf/MayTravel/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/morenojf/MayTravel.git"
+  },
+  "license": "ISC",
+  "author": "morenojf",
+  "type": "module",
+  "main": "app.mjs",
+  "dependencies": {
+    "express": "5.2.1",
+    "pg": "8.16.3"
+  },
+  "transform": {},
+  "devDependencies": {
+    "@eslint/js": "9.39.2",
+    "eslint": "9.39.2",
+    "globals": "^16.5.0",
+    "jest": "30.2.0"
+  },
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}
