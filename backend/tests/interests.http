@@ -1,0 +1,22 @@
+### Obtener lista de intereses
+GET http://localhost:3000/interests
+
+### Crear interest
+POST http://localhost:3000/interests
+Content-Type: application/json
+
+{
+	"name": "Parks"
+}
+
+### Eliminar por ID
+DELETE http://localhost:3000/interests/5
+
+### Actualizar por ID 
+PUT http://localhost:3000/interests/1
+Content-Type: application/json
+
+{
+	"name": "Fresh Air"
+}
+

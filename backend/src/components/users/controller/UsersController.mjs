@@ -28,8 +28,14 @@ export class UsersController {
   // Crear un nuevo usuario
   static async create(req, res) {
     try {
+      const { username, password, email, role } = req.body
       // eslint-disable-next-line no-unused-vars
-      const newUser = await UsersModel.create(req.body)
+      const newUser = await UsersModel.create({
+        username,
+        password,
+        email,
+        role
+      })
       res.status(201).send({ mssg: 'Created succesfully' })
     } catch (error) {
       res.status(500).send({ error: error.message || error })
@@ -56,9 +62,70 @@ export class UsersController {
       const editedUser = await UsersService.editInfo(id, newInfo)
       editedUser == null
         ? res.status(404).json({ error: `The user ID ${id} was not found` })
-        : res.status(200).send({mssg: `User ID ${id} updated succesfully`})
+        : res.status(200).send({ mssg: `User ID ${id} updated succesfully` })
     } catch (error) {
       res.status(500).send({ error: error.message || error })
+    }
+  }
+
+  // Auth Login
+  static async authLogin(req, res) {
+    try {
+      const { identifier, password } = req.body
+      const user = await UsersService.auth({ identifier, password })
+      // si retorna un null cae acá
+      if (!user)
+        return res.status(401).send({ message: 'Credenciales inválidas' })
+      // aqui deberia firmar y enviar el JWT
+      res.status(200).json({
+        message: 'Login exitoso',
+        token: 'JWT_GENERADO_AQUI',
+        user: {
+          user: user[0].username,
+          email: user[0].email,
+          role: user[0].role
+        }
+      })
+    } catch (error) {
+      res.status(500).send({ error: error.message })
+    }
+  }
+
+  // Auth Register
+  static async authRegister(req, res) {
+    try {
+      const { username, email, password } = req.body
+      // eslint-disable-next-line no-unused-vars
+      const created = await UsersModel.create({ username, email, password })
+      res.status(200).send({ message: 'User registered succesfully' })
+    } catch (error) {
+      res.status(500).send({ error: error.message })
+    }
+  }
+
+  // Get users interests
+  static async getInterests(req, res){
+	try {
+		const { id } = req.params
+		const result = await UsersService.getInterests(id)
+		res.status(200).send(result)
+	} catch (error) {
+		res.status(500).send({error: error.message})
+	}
+  }
+
+  // attach interests to an user
+    static async addInterests(req, res) {
+    try {
+      const userId = req.params.id
+      const { interests_id } = req.body
+      // eslint-disable-next-line no-unused-vars
+      const result = await UsersModel.addInterests(userId, interests_id)
+      res
+        .status(200)
+        .send({ message: 'interests attached to the user correctly' })
+    } catch (error) {
+      res.status(500).send({ error: error.message })
     }
   }
 }

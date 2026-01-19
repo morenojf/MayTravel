@@ -1,0 +1,70 @@
+### Get all users
+
+GET http://localhost:3000/users
+
+##### Get user by ID.
+
+GET http://localhost:3000/users/12
+
+#### Create user 
+
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "username": "Pepe Admin2",
+	"password": "0000abc",
+	"email": "pepeAdmin2@gmail.com",
+	"role": "admin"
+}
+
+### Delete User by ID.
+
+DELETE http://localhost:3000/users/12
+
+### Edit User Information
+
+PUT http://localhost:3000/users/5
+Content-Type: application/json
+
+{
+    "username": "Pepe Admin editado",
+	"password": "0000abc",
+	"email": "pepeAdminAveces@gmail.com"
+}
+
+### Auth User
+
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "identifier": "pepe1@gmail.com",
+	"password": "0000abc"
+}
+
+### Registro PUBLICO de usuarios
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+    "username": "Zulmita",
+	"email": "zulmita@gmail.com",
+	"password": "12345678"
+}
+
+### Obtener intereses del usuario por su ID de usuario
+
+GET http://localhost:3000/users/1/interests
+
+
+
+
+
+### Relate user-insterests
+POST http://localhost:3000/users/2/interests
+Content-Type: application/json
+
+{
+	"interests_id": [1, 7]
+}
