@@ -48,8 +48,8 @@ POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
-    "username": "Zulmita",
-	"email": "zulmita@gmail.com",
+    "username": "Andresito",
+	"email": "andresito@gmail.com",
 	"password": "12345678"
 }
 
@@ -57,14 +57,5 @@ Content-Type: application/json
 
 GET http://localhost:3000/users/1/interests
 
-
-
-
-
-### Relate user-insterests
-POST http://localhost:3000/users/2/interests
-Content-Type: application/json
-
-{
-	"interests_id": [1, 7]
-}
+### Obtener viajes de usuario por ID de usuario. 
+GET http://localhost:3000/users/1/trips

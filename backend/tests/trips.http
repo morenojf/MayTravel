@@ -1,0 +1,20 @@
+### CREATE A TRIP
+POST http://localhost:3000/users/1/trips
+Content-Type: application/json
+
+{
+  "title": "Mérida",
+  "lat": 8.572824,
+  "lng": -71.183995,
+  "arrive_date": "2026-02-01T14:00:00Z",
+  "leave_date": "2026-02-10T10:00:00Z"
+}
+
+### OBTENER TODOS LOS TRIPS
+GET http://localhost:3000/trips
+
+### OBTENER TRIP por ID
+GET http://localhost:3000/trips/3
+
+### ELIMINAR TRIP por ID
+DELETE http://localhost:3000/trips/3
