@@ -7,7 +7,10 @@ export class TripsModel {
   }
 
   static async getByUser(userId) {
-    const result = await db.query('SELECT users.id AS user_id, users.username, trips.id AS trip_id, trips.title, trips.shelter, trips.arrive_date, trips.leave_date FROM users LEFT JOIN trips ON users.id = trips.user_id WHERE users.id = $1', [userId])
+    const result = await db.query(
+      'SELECT users.id AS user_id, users.username, trips.id AS trip_id, trips.title, trips.shelter, trips.arrive_date, trips.leave_date FROM users LEFT JOIN trips ON users.id = trips.user_id WHERE users.id = $1',
+      [userId]
+    )
     return result.rows
   }
 
@@ -24,8 +27,8 @@ export class TripsModel {
     return result.rows
   }
 
-  static async getById(id){
-	const result = await db.query('SELECT * FROM trips WHERE id = $1', [id])
-	return result.rows
+  static async getById(id) {
+    const result = await db.query('SELECT * FROM trips WHERE id = $1', [id])
+    return result.rows
   }
 }

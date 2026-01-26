@@ -1,0 +1,27 @@
+### OBTENER TODOS LOS POIS
+GET http://localhost:3000/pois
+
+### CREAR POI
+POST http://localhost:3000/pois
+Content-Type: application/json
+
+{
+	"name": "Pizzeria Da Enzo",
+	"address": "HRHH+6MR, Av Andrés Bello, Mérida 5101, Mérida",
+	"lat": 8.5760157,
+	"lng": -71.1720656,
+	"category": "Restaurant",
+	"open_time": "12:30:00",
+	"close_time": "10:15:00",
+	"average_stay_minutes": 120
+}
+
+### ELIMINAR POI 
+DELETE http://localhost:3000/pois/3
+
+### ACTUALIZAR POI DATA
+PATCH http://localhost:3000/pois/2
+Content-Type: application/json
+
+{
+}

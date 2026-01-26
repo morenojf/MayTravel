@@ -9,6 +9,7 @@ import { validateInfo } from '../middlewares/UsersValid.mjs'
 import { UsersController } from "../components/users/controller/UsersController.mjs"
 import { InterestController } from '../components/interests/controller/InterestsController.mjs'
 import { TripsController } from '../components/trips/controller/TripsController.mjs'
+import { PoisController } from '../components/poi_catalog/controller/PoisController.mjs'
 
 
 // exportación de rutas
@@ -43,12 +44,17 @@ routing.post('/interests', InterestController.create)
 routing.delete('/interests/:id', InterestController.delete)
 routing.put('/interests/:id', InterestController.update)
 
-//TRIPS 
+// TRIPS 
 // managment (CRUD)
 routing.get('/trips', TripsController.getAll)
 routing.get('/trips/:id', TripsController.getById)
 routing.delete('/trips/:id', TripsController.delete)
 routing.post('/users/:id/trips', TripsController.create)
 
-
+// POI_CATALOG
+// managment (CRUD)
+routing.get('/pois', PoisController.getAll)
+routing.post('/pois', PoisController.create)
+routing.delete('/pois/:id', PoisController.delete)
+routing.patch('/pois/:id', PoisController.update)
 
