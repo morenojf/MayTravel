@@ -6,7 +6,7 @@ POST http://localhost:3000/interests
 Content-Type: application/json
 
 {
-	"name": "Dance hall"
+	"name": "Gamescon"
 }
 
 ### Eliminar por ID
@@ -25,5 +25,5 @@ POST http://localhost:3000/users/1/interests
 Content-Type: application/json
 
 {
-	"interests_id": [1, 5]
+	"interests_id": [1, 5, 7]
 }

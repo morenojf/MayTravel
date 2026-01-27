@@ -28,7 +28,7 @@ export class TripsModel {
   }
 
   static async getById(id) {
-    const result = await db.query('SELECT * FROM trips WHERE id = $1', [id])
+    const result = await db.query('SELECT trips.title, trips.shelter, trips.arrive_date, trips.leave_date, poi_catalog.name AS spot_name, poi_catalog.category AS spot_label, stops.id AS stop_id, stops.stop_order, stops.arrival_time, stops.departure_time FROM trips LEFT JOIN stops ON trips.id = stops.trip_id LEFT JOIN poi_catalog ON stops.poi_catalog_id = poi_catalog.id WHERE trips.id = $1 ORDER BY stop_order ASC;', [id])
     return result.rows
   }
 }

@@ -6,13 +6,13 @@ POST http://localhost:3000/pois
 Content-Type: application/json
 
 {
-	"name": "Pizzeria Da Enzo",
-	"address": "HRHH+6MR, Av Andrés Bello, Mérida 5101, Mérida",
-	"lat": 8.5760157,
-	"lng": -71.1720656,
-	"category": "Restaurant",
-	"open_time": "12:30:00",
-	"close_time": "10:15:00",
+	"name": "Bike Park CacaoCycling",
+	"address": "JVH9+JV Cacao Cycling, Mérida 5101, Mérida",
+	"lat": 8.6286146,
+	"lng": -71.1340762,
+	"category": "Park",
+	"open_time": "09:00:00",
+	"close_time": "17:00:00",
 	"average_stay_minutes": 120
 }
 

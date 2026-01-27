@@ -1,0 +1,11 @@
+### Crear un stop
+POST http://localhost:3000/stops
+Content-Type: application/json
+
+{
+	"trip_id": 1,
+	"poi_catalog_id": 3,
+	"stop_order": 3,
+	"arrival_time": "2026-02-01T14:00:00Z",
+	"departure_time": "2026-02-01T16:00:00Z"
+}

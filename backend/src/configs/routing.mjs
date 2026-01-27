@@ -10,6 +10,7 @@ import { UsersController } from "../components/users/controller/UsersController.
 import { InterestController } from '../components/interests/controller/InterestsController.mjs'
 import { TripsController } from '../components/trips/controller/TripsController.mjs'
 import { PoisController } from '../components/poi_catalog/controller/PoisController.mjs'
+import { StopsController } from '../components/stops/controller/StopsController.mjs'
 
 
 // exportación de rutas
@@ -58,3 +59,6 @@ routing.post('/pois', PoisController.create)
 routing.delete('/pois/:id', PoisController.delete)
 routing.patch('/pois/:id', PoisController.update)
 
+// STOPS
+// managment (CRUD)
+routing.post('/stops', StopsController.create)
