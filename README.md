@@ -6,7 +6,7 @@ Front-end: React
 
 Back-end: Node.js (Express)
 
-IA: undetermined
+IA: Google Gemini Model Langauge using RAG. 
 
 Datos geográficos: Google maps platform
 
