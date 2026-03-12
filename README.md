@@ -8,7 +8,7 @@ Back-end: Node.js (Express)
 
 IA: Google Gemini Model Langauge using RAG. 
 
-Datos geográficos: Google maps platform
+Datos geográficos: Overpass API
 
 DB: PostgresSQL. 
 
