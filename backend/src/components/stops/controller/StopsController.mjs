@@ -11,4 +11,15 @@ export class StopsController {
       res.status(500).send({ error: error.message })
     }
   }
+
+  static async delete(req, res){
+	try {
+		const id = req.params.id
+		// eslint-disable-next-line no-unused-vars
+		const result = await StopsModel.delete(id)
+		res.status(200).send({message: `Stop ${id} deleted succesfully`})
+	} catch (error) {
+		res.status(500).send({error: error.message})
+	}
+  }
 }

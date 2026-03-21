@@ -10,13 +10,13 @@ POST http://localhost:3000/users/1/trips
 Content-Type: application/json
 
 {
-  "title": "Medellín",
-  "lat": 6.2454982,
-  "lng": -75.575423,
+  "title": "Merida",
+  "lat": 8.5718775,
+  "lng": -71.1800371,
   "arrive_date": "2026-02-11T14:00:00Z",
   "leave_date": "2026-02-20T10:00:00Z"
 }
 
 
 ### ELIMINAR TRIP por ID
-DELETE http://localhost:3000/trips/3
+DELETE http://localhost:3000/trips/4

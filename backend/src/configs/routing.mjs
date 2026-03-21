@@ -37,6 +37,9 @@ routing.post('/users/:id/interests', UsersController.addInterests)
 // trips-users
 routing.get('/users/:id/trips', TripsController.getByUser)
 
+// trips-generate
+routing.post('/users/:id/trips', TripsController.create)
+
 
 // INTERESTS
 // managment (CRUD)
@@ -50,7 +53,6 @@ routing.put('/interests/:id', InterestController.update)
 routing.get('/trips', TripsController.getAll)
 routing.get('/trips/:id', TripsController.getById)
 routing.delete('/trips/:id', TripsController.delete)
-routing.post('/users/:id/trips', TripsController.create)
 
 // POI_CATALOG
 // managment (CRUD)
@@ -62,3 +64,6 @@ routing.patch('/pois/:id', PoisController.update)
 // STOPS
 // managment (CRUD)
 routing.post('/stops', StopsController.create)
+routing.delete('/stops/:id', StopsController.delete)
+
+

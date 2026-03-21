@@ -1,3 +1,6 @@
+// ejecuta proyecto con: 
+// node --watch --env-file=.env src/app.mjs
+
 // importación de configuración del servidor
 import {app, port} from "./configs/server.mjs"
 

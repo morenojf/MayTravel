@@ -19,6 +19,7 @@
   "type": "module",
   "main": "app.mjs",
   "dependencies": {
+    "@google/genai": "^1.40.0",
     "express": "5.2.1",
     "pg": "8.16.3"
   },
