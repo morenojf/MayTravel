@@ -1,4 +1,4 @@
-import Navbar from '../ui/components/app-navbar/navbar'
+import Navbar from '../ui/components/common/navbar'
 
 //Layout: Es una función que envuelve a tus páginas.
 // { children }: Es un "hueco" o marcador de posición. Representa el contenido de cualquier página (page.tsx) que el usuario esté viendo en ese momento (como la lista de viajes o el formulario de creación).
