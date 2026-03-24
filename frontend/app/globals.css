@@ -1,1 +1,22 @@
 @import 'tailwindcss';
+
+@layer utilities {
+  /* Personalización del scroll para navegadores basados en Webkit (Chrome, Safari, Edge, Brave) */
+  .scrollbar-minimalist::-webkit-scrollbar {
+    width: 6px; /* Ancho de la barra vertical */
+    height: 6px; /* Alto de la barra horizontal */
+  }
+
+  .scrollbar-minimalist::-webkit-scrollbar-track {
+    background: transparent; /* Fondo de la barra (invisible) */
+  }
+
+  .scrollbar-minimalist::-webkit-scrollbar-thumb {
+    background: #d1d5db; /* Color gris suave (Tailwind gray-300) */
+    border-radius: 10px; /* Bordes redondeados */
+  }
+
+  .scrollbar-minimalist::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af; /* Color al pasar el mouse (Tailwind gray-400) */
+  }
+}
