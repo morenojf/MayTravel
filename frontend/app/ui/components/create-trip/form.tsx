@@ -43,7 +43,7 @@ export default function CreateTripForm() {
           </div>
         </div>
 
-        <Link href="/dashboard">
+        <Link href="/trip-itinerary">
           <button
             type="submit"
             className="text-sm w-full bg-orange-500 text-white py-2 rounded-lg font-bold hover:bg-orange-600 transition-colors"
