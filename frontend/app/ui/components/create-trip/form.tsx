@@ -1,5 +1,4 @@
-'use client'
-
+import SearchCityInput from '../common/search-city-input'
 import InputField from '../common/input-field'
 import Link from 'next/link'
 
@@ -7,7 +6,7 @@ export default function CreateTripForm() {
   return (
     <div className="flex justify-center scale-85 origin-top">
       <form className="p-8 w-130">
-        <InputField
+        <SearchCityInput
           label="Lugar"
           type="text"
           id="place"
@@ -17,8 +16,8 @@ export default function CreateTripForm() {
 
         <InputField
           label="Hospedaje"
-          type="password"
-          id="password"
+          type="text"
+          id="home"
           placeholder="¿Dónde te quedas?"
           errorMessage="Por favor, ingresa una ubicación"
         />
