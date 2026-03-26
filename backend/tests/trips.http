@@ -1,12 +1,12 @@
 
 ### OBTENER TODOS LOS TRIPS
-GET http://localhost:3000/trips
+GET http://localhost:4000/trips
 
 ### OBTENER TRIP DETAILS por ID including stops details.
-GET http://localhost:3000/trips/1
+GET http://localhost:4000/trips/1
 
 ### CREATE A TRIP
-POST http://localhost:3000/users/1/trips
+POST http://localhost:4000/users/1/trips
 Content-Type: application/json
 
 {
@@ -19,4 +19,4 @@ Content-Type: application/json
 
 
 ### ELIMINAR TRIP por ID
-DELETE http://localhost:3000/trips/4
+DELETE http://localhost:4000/trips/4
