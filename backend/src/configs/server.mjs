@@ -1,6 +1,3 @@
 import express from 'express'
 export const app = express()
-export const port = 3000
-
-
-
+export const port = process.env.PORT || 4000
