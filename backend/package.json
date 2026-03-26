@@ -20,6 +20,7 @@
   "main": "app.mjs",
   "dependencies": {
     "@google/genai": "^1.40.0",
+    "cors": "^2.8.6",
     "express": "5.2.1",
     "pg": "8.16.3"
   },
@@ -28,7 +29,8 @@
     "@eslint/js": "9.39.2",
     "eslint": "9.39.2",
     "globals": "^16.5.0",
-    "jest": "30.2.0"
+    "jest": "30.2.0",
+    "nodemon": "^3.1.14"
   },
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
