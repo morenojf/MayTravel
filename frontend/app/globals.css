@@ -1,5 +1,15 @@
 @import 'tailwindcss';
 
+/* Importante: Sin esto el mapa se verá como cuadros desordenados */
+@import 'leaflet/dist/leaflet.css';
+
+@layer base {
+  body {
+    background-color: #f8f9fa; /* Gris muy suave */
+    color: #212529; /* Texto casi negro */
+  }
+}
+
 @layer utilities {
   /* Personalización del scroll para navegadores basados en Webkit (Chrome, Safari, Edge, Brave) */
   .scrollbar-minimalist::-webkit-scrollbar {
