@@ -33,6 +33,10 @@
     "nodemon": "^3.1.14"
   },
   "scripts": {
+    "start": "node src/app.mjs",
+    "dev": "nodemon -L --env-file=.env src/app.mjs",
+    "clean:win": "taskkill /F /IM node.exe /T",
+    "dev:safe": "npm run clean:win && npm run dev",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "jest": {
