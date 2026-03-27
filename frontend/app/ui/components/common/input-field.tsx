@@ -18,7 +18,10 @@ export default function InputField({
   return (
     <div className="flex flex-col mb-4">
       {/* Etiqueta del campo */}
-      <label htmlFor={id} className="mb-1 text-sm font-semibold text-gray-700">
+      <label
+        htmlFor={id}
+        className="mb-1 mt-3 text-sm font-semibold text-gray-700"
+      >
         {label}
       </label>
 
