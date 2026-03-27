@@ -1,8 +1,19 @@
+'use client'
+
+import { useState } from 'react'
+
 import SearchCityInput from '../common/search-city-input'
+import LodgingInput from '../common/input-lodging'
 import InputField from '../common/input-field'
 import Link from 'next/link'
 
 export default function CreateTripForm() {
+  // Aquí guardamos las coordenadas de la ciudad elegida
+  const [coords, setCoords] = useState({ lat: '', lng: '' })
+  const handleCityCoords = (lat: string, lng: string) => {
+    setCoords({ lat, lng })
+  }
+
   return (
     <div className="flex justify-center scale-85 origin-top">
       <form className="p-8 w-130">
@@ -12,14 +23,16 @@ export default function CreateTripForm() {
           id="place"
           placeholder="¿A dónde vas?"
           errorMessage="Por favor, ingresa una ubicación"
+          onCitySelect={handleCityCoords} // Pasamos la función aquí
         />
 
-        <InputField
+        <LodgingInput
           label="Hospedaje"
           type="text"
           id="home"
           placeholder="¿Dónde te quedas?"
           errorMessage="Por favor, ingresa una ubicación"
+          coords={coords} // <--- Pasamos el estado del padre al hijo
         />
 
         {/* contenedor de fechas */}

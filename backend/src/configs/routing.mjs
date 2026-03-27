@@ -11,6 +11,7 @@ import { TripsController } from '../components/trips/controller/TripsController.
 import { PoisController } from '../components/poi_catalog/controller/PoisController.mjs'
 import { StopsController } from '../components/stops/controller/StopsController.mjs'
 import { CityNameController } from '../components/city-name/controller/CityNameController.mjs'
+import { LodgingsController } from '../components/lodgings-names/controller/lodgingsController.mjs'
 
 // exportación de rutas
 export const routing = Router()
@@ -66,3 +67,6 @@ routing.delete('/stops/:id', StopsController.delete)
 
 // TYPEAHEAD (name places)
 routing.get('/city-name/:q', CityNameController.get)
+
+// TYPEAHEAD (name lodgings) (query parms lat&lng)
+routing.get('/lodging-names', LodgingsController.getLodgings)
