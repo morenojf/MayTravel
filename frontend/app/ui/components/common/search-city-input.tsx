@@ -10,6 +10,8 @@ interface InputFieldProps {
   id: string
   placeholder?: string
   errorMessage: string
+  // Nueva prop para comunicar la selección al padre (form.tsx)
+  onCitySelect?: (lat: string, lng: string) => void
 }
 
 interface CityResults {
@@ -17,13 +19,17 @@ interface CityResults {
   city_name: string
   reg: string
   country: string
+  lat: string
+  lng: string
 }
 
 // Ajusta las props según lo que ya le estás pasando desde form.tsx
 export default function SearchCityInput({
   label,
   id,
-  placeholder
+  placeholder,
+  errorMessage,
+  onCitySelect // Desestructuramos la nueva prop
 }: InputFieldProps) {
   const [inputValue, setInputValue] = useState('')
   const [results, setResults] = useState<CityResults[]>([])
@@ -88,10 +94,14 @@ export default function SearchCityInput({
 
   // 3. Manejar la selección del elemento
   const handleSelect = (city: CityResults) => {
-    // Seteamos el valor con el formato que pediste
     const fullLocation = `${city.city_name}, ${city.reg}, ${city.country}`
     setInputValue(fullLocation)
-    setShowList(false) // Cerramos la lista inmediatamente
+    setShowList(false)
+
+    // Si la prop existe, enviamos las coordenadas al padre
+    if (onCitySelect) {
+      onCitySelect(city.lat, city.lng)
+    }
   }
 
   return (
@@ -108,7 +118,13 @@ export default function SearchCityInput({
         onChange={(e) => setInputValue(e.target.value)}
         onFocus={() => inputValue.length > 0 && setShowList(true)}
         className="border p-2 rounded text-black"
+        required
       />
+
+      {/* El Mensaje de Error (El Reactor) */}
+      <p className="mt-1 text-sm text-red-500 invisible peer-invalid:[&:not(:placeholder-shown)]:visible">
+        {errorMessage}
+      </p>
 
       {isSearching && (
         <span className="text-xs text-gray-400">Buscando...</span>
