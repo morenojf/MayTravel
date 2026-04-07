@@ -14,8 +14,8 @@ export class OPService {
     }
 
     const RADIO = 5000
-    const OVERPASS_URL =
-      'https://maps.mail.ru/osm/tools/overpass/api/interpreter'
+    const OVERPASS_URL = 'https://overpass-api.de/api/interpreter'
+    //   'https://maps.mail.ru/osm/tools/overpass/api/interpreter'
     // const OVERPASS_URL = 'https://overpass-api.de/api/interpreter' main api instance (limited usage) further info https://wiki.openstreetmap.org/wiki/Overpass_API#Public_Overpass_API_instances
     const DEFAULT_TIMEOUT = 120
     const MAX_ATTEMPS = 3
@@ -107,7 +107,14 @@ export class OPService {
       const stay =
         AVRG_STAY_MINUTES[element.category] || AVRG_STAY_MINUTES['default']
 
-      return `(${element.poi_id}, '${element.name}', '${element.address}', ST_SetSRID(ST_MakePoint(${element.lng}, ${element.lat}), 4326), '${element.category}', '${element.opening_hours}', ${stay})`
+      // en caso de que exista alguna cadena de texto que rompa la query de la db, las constantes a continuacion deberian escaparlas
+      const safeName = element.name.replace(/'/g, "''")
+      const safeAddress = element.address
+        ? element.address.replace(/'/g, "''")
+        : 'No especificado'
+      const safeHours = element.opening_hours.replace(/'/g, "''")
+
+      return `(${element.poi_id}, '${safeName}', '${safeAddress}', ST_SetSRID(ST_MakePoint(${element.lng}, ${element.lat}), 4326), '${element.category}', '${safeHours}', ${stay})`
     })
 
     // envio de POIS a la base de datos para guardarlos
