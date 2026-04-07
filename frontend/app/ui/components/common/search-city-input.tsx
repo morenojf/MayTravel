@@ -110,6 +110,7 @@ export default function SearchCityInput({
         {label}
       </label>
       <input
+        name="place"
         type="text"
         id={id}
         autoComplete="off" // Evita que el navegador tape tus sugerencias
