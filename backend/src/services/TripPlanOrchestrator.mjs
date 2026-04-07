@@ -5,6 +5,12 @@ import { TripsModel } from '../components/trips/model/TripsModel.mjs'
 import { StopsService } from '../components/stops/service/StopsService.mjs'
 import { OPService } from './OverpassAPI.mjs'
 
+// this service involves using the POIS service (which searches on the DB to see if there are already existing POIS)
+// Overpass API for getting new POIS using user's interest to insert them into the DB
+// gemini API alongside the db for implementing RAG and creating stops for the itinerary
+// creating the new trip on the DB with the associated stops
+// retornar las stops correspondientes al viaje creado
+
 export class TripPlan {
   static async create(tripData, userId) {
     // 1. Obtener intereses del usuario
@@ -20,16 +26,13 @@ export class TripPlan {
       tripData.lat,
       interestsList
     )
+
     // si no encuentra nada, consultar a Overpass API y guardar en POI_catalog
     if (!availablePois?.length) {
       const { lat, lng } = tripData
       // consulta la API overpass para tener POIS e introducirlos a la DB
       // eslint-disable-next-line no-unused-vars
-      const dbResponse = await OPService.overpassService(
-        interestsList,
-        lat,
-        lng
-      )
+      const dbResponse = await OPService.getPois(interestsList, lat, lng)
 
       // obtiene los datos recien guardados en la DB
       const poisResult = await PoisService.getNearby(lng, lat, interestsList)
