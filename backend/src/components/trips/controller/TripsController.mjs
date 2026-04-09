@@ -7,7 +7,7 @@ import { TripsService } from '../service/TripsService.mjs'
 export class TripsController {
   static async create(req, res) {
     try {
-      const userId = req.params.id
+      const userId = req.userId
       // shelter es de tipo POINT
       const tripData = req.body
       const result = await TripPlan.create(tripData, userId)
@@ -33,11 +33,11 @@ export class TripsController {
 
   static async getByUser(req, res) {
     try {
-      const userId = req.params.id
+      const userId = req.userId
       const result = await TripsService.getByUser(userId)
       res.status(200).send(result)
     } catch (error) {
-      res.status(500).send({ error: error.messag })
+      res.status(500).send({ error: error.message })
     }
   }
 

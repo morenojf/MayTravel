@@ -20,8 +20,10 @@
   "main": "app.mjs",
   "dependencies": {
     "@google/genai": "^1.40.0",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
     "express": "5.2.1",
+    "jsonwebtoken": "^9.0.3",
     "pg": "8.16.3"
   },
   "transform": {},

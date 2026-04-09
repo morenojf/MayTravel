@@ -41,9 +41,12 @@ export class UsersModel {
     return result.rows
   }
 
-  static async getInterests(id){
-	const result = await db.query('SELECT users.id, users.username, users.email, interests.name AS interest_name,interests.id AS interest_id FROM users LEFT JOIN users_interests ON users.id = users_interests.user_id LEFT JOIN interests ON users_interests.interest_id = interests.id WHERE users.id = $1', [id])
-	return result.rows
+  static async getInterests(id) {
+    const result = await db.query(
+      'SELECT users.id, users.username, users.email, interests.name AS interest_name,interests.id AS interest_id FROM users LEFT JOIN users_interests ON users.id = users_interests.user_id LEFT JOIN interests ON users_interests.interest_id = interests.id WHERE users.id = $1',
+      [id]
+    )
+    return result.rows
   }
 
   static async addInterests(userId, interest) {

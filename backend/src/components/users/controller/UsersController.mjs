@@ -1,5 +1,6 @@
 import { UsersService } from '../service/UsersService.mjs'
 import { UsersModel } from '../model/UsersModel.mjs'
+import generateAccessToken from '../../../services/auth.controller.mjs'
 
 export class UsersController {
   // Obtener todos los usuarios
@@ -72,20 +73,23 @@ export class UsersController {
   static async authLogin(req, res) {
     try {
       const { identifier, password } = req.body
-      const user = await UsersService.auth({ identifier, password })
-      // si retorna un null cae acá
-      if (!user)
-        return res.status(401).send({ message: 'Credenciales inválidas' })
-      // aqui deberia firmar y enviar el JWT
-      res.status(200).json({
-        message: 'Login exitoso',
-        token: 'JWT_GENERADO_AQUI',
-        user: {
-          user: user[0].username,
-          email: user[0].email,
-          role: user[0].role
-        }
-      })
+
+      const user = await UsersService.auth(identifier, password)
+      //   si retorna un null cae acá
+      if (user == null) {
+        res.status(401).send({ message: 'Credenciales inválidas' })
+      } else {
+        const accessToken = generateAccessToken(user)
+
+        res
+          .cookie('token', accessToken, {
+            httpOnly: true,
+            secure: false,
+            sameSite: 'lax',
+            maxAge: 3600000 //duracion de una hora en milisegundos
+          })
+          .send({ message: 'Cookie is set' })
+      }
     } catch (error) {
       res.status(500).send({ error: error.message })
     }
@@ -104,18 +108,18 @@ export class UsersController {
   }
 
   // Get users interests
-  static async getInterests(req, res){
-	try {
-		const { id } = req.params
-		const result = await UsersService.getInterests(id)
-		res.status(200).send(result)
-	} catch (error) {
-		res.status(500).send({error: error.message})
-	}
+  static async getInterests(req, res) {
+    try {
+      const { id } = req.params
+      const result = await UsersService.getInterests(id)
+      res.status(200).send(result)
+    } catch (error) {
+      res.status(500).send({ error: error.message })
+    }
   }
 
   // attach interests to an user
-    static async addInterests(req, res) {
+  static async addInterests(req, res) {
     try {
       const userId = req.params.id
       const { interests_id } = req.body
