@@ -15,7 +15,7 @@ export class TripsService {
         title: element.title,
         shelter: element.shelter,
         arrd: element.arrive_date,
-        levd: element.leave_date
+        leavd: element.leave_date
       }))
     }
 
@@ -33,7 +33,7 @@ export class TripsService {
       arrive_date,
       leave_date,
       stops: result.map((element) => ({
-		id: element.stop_id,
+        id: element.stop_id,
         name: element.spot_name,
         category: element.spot_label,
         order: element.stop_order,
@@ -42,6 +42,6 @@ export class TripsService {
       }))
     }
 
-	return simplified
+    return simplified
   }
 }

@@ -59,9 +59,11 @@ export default function LodgingInput({
           lng: coords.lng.toString(),
           has: searchQuery
         })
-        console.log(`http://localhost:4000/lodging-names?${params}`)
+        console.log(`http://localhost:4000/api/lodging-names?${params}`)
 
-        const res = await fetch(`http://localhost:4000/lodging-names?${params}`)
+        const res = await fetch(
+          `http://localhost:4000/api/lodging-names?${params}`
+        )
 
         if (res.ok) {
           const data = await res.json()

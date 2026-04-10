@@ -27,6 +27,8 @@ export class PhotonService {
 
     const lodgings = await response.json()
 
+    console.log('Conexión con Photon finalizada')
+
     return lodgings.features
   }
 }

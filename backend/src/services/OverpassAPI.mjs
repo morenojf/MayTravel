@@ -119,6 +119,9 @@ export class OPService {
 
     // envio de POIS a la base de datos para guardarlos
     const result = PoisModel.create(values)
+
+    console.log('Conexión con OverPass finalizada')
+
     return result
   }
 
@@ -154,6 +157,8 @@ export class OPService {
     }
 
     const lodgings = await response.json()
+
+    console.log('Conexión con OverPass finalizada')
 
     return lodgings.elements
   }

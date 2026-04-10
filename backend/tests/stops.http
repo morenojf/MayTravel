@@ -1,8 +1,8 @@
 ### Eliminar un stop
-DELETE 	http://localhost:4000/stops/3
+DELETE 	http://localhost:4000/api/stops/3
 
 ### Crear un stop
-POST http://localhost:4000/stops
+POST http://localhost:4000/api/stops
 Content-Type: application/json
 
 {

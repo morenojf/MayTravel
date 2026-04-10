@@ -53,7 +53,10 @@ export class TripPlan {
     const result = await StopsService.create(stopsByGemini, createdTrip)
 
     // 6. Obtener stops correspondientes al trip
+    // this returns not only the stops but the already formatted object with the trip_id, trip_title and the related stops
     const stops = await StopsService.getStopsByTripId(createdTrip.id)
+
+    console.log('Trip created successfully')
 
     return stops
   }

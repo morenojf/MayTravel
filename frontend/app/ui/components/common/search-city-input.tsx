@@ -75,7 +75,7 @@ export default function SearchCityInput({
       setIsSearching(true)
       try {
         const response = await fetch(
-          `http://localhost:4000/city-name/${inputValue}`
+          `http://localhost:4000/api/city-name/${inputValue}`
         )
         if (response.ok) {
           const data = await response.json()

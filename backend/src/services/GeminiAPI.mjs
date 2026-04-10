@@ -5,6 +5,8 @@ const ai = new GoogleGenAI({})
 
 export class GeminiService {
   static async createItinerary(pois, tripData) {
+    console.log('Estableciendo conexión con Gemini')
+
     const prompt = `
 	Actúa como planificador de viajes experto en ${tripData.title}.
       Organiza un itinerario desde el ${tripData.arrive_date} hasta el ${tripData.leave_date}.
@@ -50,6 +52,8 @@ export class GeminiService {
 
     // limpia la respuesta de Gemini para quitar texto posiblemente añadido
     const cleanResponse = response.text.replace(/```json|```/g, '').trim()
+
+    console.log('Conexión con Gemini finalizada')
 
     // parsea el texto a JSON y retorna
     return JSON.parse(cleanResponse)
