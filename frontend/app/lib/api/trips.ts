@@ -26,3 +26,26 @@ export async function getTrips() {
 	const tripData = await response.json()
 	return tripData
 }
+
+export async function getTripById(tripId: number) {
+
+	const cookieStore = await cookies();
+	const token = cookieStore.get('token')?.value
+
+	const response = await fetch(`${BASE_API_URL}/trips/${tripId}`,
+		{
+			method: 'GET',
+			headers: {
+				'content-type': 'application/json',
+				'Cookie': `token=${token}`
+			}
+		}
+	)
+
+	if (!response.ok) {
+		const errorData = await response.json()
+		throw new Error(errorData.error || 'Error al obtener los detalles del viaje')
+	}
+
+	return await response.json()
+}

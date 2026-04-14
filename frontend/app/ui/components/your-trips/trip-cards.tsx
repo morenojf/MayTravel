@@ -1,7 +1,7 @@
 'use client'
 
 import { SingleTrip } from '@/app/lib/interfaces/tripInterface'
-import { formatDate } from '@/app/lib/utils/formatDate'
+import { formatDate } from '@/app/lib/utils/formatDate_time'
 import Image from 'next/image'
 
 import { useRouter } from 'next/navigation'
