@@ -38,16 +38,20 @@ export class TripsModel {
     return result.rows
   }
 
-  static async getById(id) {
+  static async getById(id, userId) {
     const result = await db.query(
       `
 		SELECT 
 			trips.title, 
-			trips.shelter, 
+			ST_Y(shelter::geometry) AS shelter_lat,
+			ST_X(shelter::geometry) AS shelter_lng,
 			trips.arrive_date, 
 			trips.leave_date, 
 			poi_catalog.name AS spot_name, 
 			poi_catalog.category AS spot_label, 
+			poi_catalog.business_hours AS business_hours,
+			ST_Y(poi::geometry) AS lat, 
+            ST_X(poi::geometry) AS lng,
 			stops.id AS stop_id, 
 			stops.stop_order, 
 			stops.arrival_time, 
@@ -55,9 +59,9 @@ export class TripsModel {
 		FROM trips 
 		LEFT JOIN stops ON trips.id = stops.trip_id 
 		LEFT JOIN poi_catalog ON stops.poi_catalog_id = poi_catalog.id 
-		WHERE trips.id = $1 
+		WHERE trips.id = $1 AND trips.user_id = $2
 		ORDER BY stop_order ASC;`,
-      [id]
+      [id, userId]
     )
     return result.rows
   }

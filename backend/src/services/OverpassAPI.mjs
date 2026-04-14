@@ -85,7 +85,7 @@ export class OPService {
           lng: lng,
           // Si no existen en tags, estas llaves serán null
           address: fullAddress,
-          opening_hours: poi.tags.opening_hours || 'No especificado'
+          opening_hours: poi.tags.opening_hours || null
         }
       })
 
