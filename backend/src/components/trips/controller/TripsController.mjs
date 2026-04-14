@@ -54,8 +54,9 @@ export class TripsController {
 
   static async getById(req, res) {
     try {
+      const userId = req.userId
       const id = req.params.id
-      const result = await TripsService.getById(id)
+      const result = await TripsService.getById(id, userId)
       res.status(200).send(result)
     } catch (error) {
       res.status(500).send({ error: error.message })
