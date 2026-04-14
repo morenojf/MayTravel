@@ -23,6 +23,7 @@ export class GeminiService {
       3. No incluyas más de 4 lugares por día.
 	  4. Solo responde con el formato de respuesta
 	  5. el stop_order debe reiniciarse al cambiar de fecha empezando de nuevo en 1.
+	  6. Los horarios de llegada a un POI no debe estar fuera del rango del business_hour
       
       FORMATO DE RESPUESTA (JSON):
       [
@@ -31,6 +32,7 @@ export class GeminiService {
           "stop_order": 1,
           "arrival_time": "ISO_TIMESTAMP",
           "departure_time": "ISO_TIMESTAMP"
+		  "business_hour": "ISO_TIMESTAMP"
         }
       ]
 	`
