@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import TripCard from '@/app/ui/components/your-trips/trip-cards'
 import { getTrips } from '@/app/lib/api/trips'
-import { SingleTrip, userTrips } from '@/app/lib/interfaces/tripInterface'
+import { SingleTrip, UserTrips } from '@/app/lib/interfaces/tripInterface'
 
 export default async function TripGallery() {
   // 1. solicitar a la api los viajes del usuario logueado
-  const userTrips: userTrips = await getTrips()
+  const userTrips: UserTrips = await getTrips()
 
   // 2. si no tiene viajes motrar componente base
 
