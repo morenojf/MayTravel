@@ -19,7 +19,10 @@ export const routing = Router()
 // USERS
 // managment (CRUD)
 routing.get('/users', UsersController.getAll)
-// routing.get('/users/:id', UsersController.getById)
+
+// get user basic data (username, role, email)
+routing.get('/profile', UsersController.getById)
+
 routing.post('/users', UsersController.create)
 // routing.delete('/users/:id', UsersController.delete)
 // routing.put('/users/:id', validateInfo, UsersController.editInfo)

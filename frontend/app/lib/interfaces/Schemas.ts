@@ -10,3 +10,16 @@ export interface UserInfo {
 	identifier: string,
 	password: string,
 }
+
+export interface NewUserInfo {
+	username: string,
+	email: string,
+	password: string
+}
+
+export interface Profile {
+	username: string,
+	email: string,
+	role: string,
+	id: number
+}

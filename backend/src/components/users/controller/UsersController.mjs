@@ -16,11 +16,11 @@ export class UsersController {
   // Obtener usuario por ID
   static async getById(req, res) {
     try {
-      const id = req.params.id
+      const id = req.userId
       const user = await UsersModel.getById(id)
       !user.length
         ? res.status(404).json({ error: `The user ID ${id} was not found` })
-        : res.status(200).send(user)
+        : res.status(200).send(user[0])
     } catch (error) {
       res.status(500).send({ error: error.message || error })
     }

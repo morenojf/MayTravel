@@ -7,7 +7,10 @@ export class UsersModel {
   }
 
   static async getById(id) {
-    const result = await db.query('SELECT * FROM users WHERE id = $1', [id])
+    const result = await db.query(
+      'SELECT id, role, username, email FROM users WHERE id = $1',
+      [id]
+    )
     return result.rows
   }
 
