@@ -10,13 +10,16 @@ export class TripsService {
     const simplified = {
       user_id,
       username,
-      trips: result.map((element) => ({
-        id: element.trip_id,
-        title: element.title,
-        shelter: element.shelter,
-        arrd: element.arrive_date,
-        leavd: element.leave_date
-      }))
+      trips:
+        result[0].trip_id != null
+          ? result.map((element) => ({
+              id: element.trip_id,
+              title: element.title,
+              shelter: element.shelter,
+              arrd: element.arrive_date,
+              leavd: element.leave_date
+            }))
+          : null
     }
 
     return simplified
@@ -24,6 +27,7 @@ export class TripsService {
 
   static async getById(id, userId) {
     const result = await TripsModel.getById(id, userId)
+
     if (!result || result.length === 0) return result
 
     const {

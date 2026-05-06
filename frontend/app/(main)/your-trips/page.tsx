@@ -8,7 +8,6 @@ export default async function TripGallery() {
   const userTrips: UserTrips = await getTrips()
 
   // 2. si no tiene viajes motrar componente base
-
   if (!userTrips.trips || userTrips.trips.length === 0) {
     return (
       <div>
