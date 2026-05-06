@@ -53,7 +53,7 @@ export default function CreateTripForm() {
           type="text"
           id="place"
           placeholder="¿A dónde vas?"
-          errorMessage="Por favor, ingresa una ubicación"
+          errorMessage="Debes seleccionar una ubicación"
           onCitySelect={handleCityCoords} // Pasamos la función aquí
         />
 
