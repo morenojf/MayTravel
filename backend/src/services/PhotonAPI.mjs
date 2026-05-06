@@ -15,6 +15,7 @@ export class PhotonService {
     console.log(`Estableciendo conexión con photon...`)
     do {
       attempts++
+      console.log('intento ', attempts)
       response = await fetch(PHOTON_URL + query)
     } while (!response.ok && attempts < MAX_ATTEMPS)
 
