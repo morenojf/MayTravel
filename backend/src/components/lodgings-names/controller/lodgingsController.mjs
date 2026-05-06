@@ -8,7 +8,7 @@ export class LodgingsController {
       const lodgings = await LodgingsService.getLodgings(lat, lng, has)
       res.status(200).send(lodgings)
     } catch (error) {
-      res.status(500).send({ erorr: error.message })
+      res.status(200).send({ erorr: error.message })
     }
   }
 }
