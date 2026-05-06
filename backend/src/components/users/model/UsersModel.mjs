@@ -59,8 +59,13 @@ export class UsersModel {
       return `(${userId}, ${element})`
     })
 
+    // Eliminar los intereses existentes
+    await db.query(`  DELETE FROM users_interests WHERE user_id = $1`, [userId])
+
+    // insertar nuevos intereses
     const result = await db.query(
-      `INSERT INTO users_interests (user_id, interest_id) VALUES ${values.join(',')}`
+      `
+	  INSERT INTO users_interests (user_id, interest_id) VALUES ${values.join(',')}`
     )
     return result.rows
   }

@@ -1,5 +1,8 @@
 'use client'
 
+// interfaz informacion de usuario
+import { Profile } from '@/app/lib/interfaces/Schemas'
+
 // styling import
 import clsx from 'clsx'
 
@@ -13,7 +16,7 @@ import { useRouter } from 'next/navigation'
 // funcion para cierre de sesion
 import logOut from '@/app/lib/utils/logout'
 
-export default function Navbar() {
+export default function Navbar(userData: Profile) {
   const pathname = usePathname()
   const route = useRouter()
 
@@ -25,7 +28,7 @@ export default function Navbar() {
 
   const menuOptions = [
     { id: 'options', label: 'Configuración' },
-    { id: 'editProfile', label: 'Editar Perfil' },
+    { id: 'editInterests', label: 'Editar Intereses' },
     { id: 'logout', label: 'Cerrar Sesión' }
   ]
 
@@ -39,6 +42,10 @@ export default function Navbar() {
     if (option === 'logout') {
       logOut()
       route.push('/login')
+    }
+
+    if (option === 'editInterests') {
+      route.push('/interests')
     }
     setIsMenuOpen(false)
   }
@@ -146,6 +153,12 @@ export default function Navbar() {
               }
             )}
           >
+            <div className="px-5 py-1">
+              <p className="text-lg">
+                <b>{userData.username.toUpperCase()}!</b>
+              </p>
+              <p className="text-sm text-slate-500">{userData.email}</p>
+            </div>
             <ul className="px-5 py-1">
               {menuOptions.map((option) => {
                 return (

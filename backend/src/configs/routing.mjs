@@ -27,9 +27,9 @@ routing.post('/users', UsersController.create)
 // routing.delete('/users/:id', UsersController.delete)
 // routing.put('/users/:id', validateInfo, UsersController.editInfo)
 
-// interests-users
-routing.get('/users/:id/interests', UsersController.getInterests) // this can work as a perfil page showing users info and interests
-routing.post('/users/:id/interests', UsersController.addInterests)
+routing.get('/users/interests', UsersController.getInterests) // get interests attached to an user
+
+routing.put('/users/interests', UsersController.addInterests) // add/edit interest to the loged in user
 
 // trips-users (refactored)
 routing.get('/users/trips', TripsController.getByUser)

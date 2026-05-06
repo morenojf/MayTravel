@@ -35,8 +35,8 @@ export class UsersService {
     const { id, username, email } = result.reduce((element) => element)
     // mapeamos los datos que no se repiten del array original (result)
     const interests = result.map((element) => ({
-      interest_id: element.interest_id,
-      interest_name: element.interest_name
+      id: element.interest_id,
+      name: element.interest_name
     }))
     // integramos los datos reducidos y los mapeados
     return { user_id: id, username, email, interests: interests }

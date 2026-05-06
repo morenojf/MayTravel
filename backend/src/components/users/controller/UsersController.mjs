@@ -110,7 +110,7 @@ export class UsersController {
   // Get users interests
   static async getInterests(req, res) {
     try {
-      const { id } = req.params
+      const id = req.userId
       const result = await UsersService.getInterests(id)
       res.status(200).send(result)
     } catch (error) {
@@ -121,10 +121,10 @@ export class UsersController {
   // attach interests to an user
   static async addInterests(req, res) {
     try {
-      const userId = req.params.id
-      const { interests_id } = req.body
+      const userId = req.userId
+      const interestsList = req.body
       // eslint-disable-next-line no-unused-vars
-      const result = await UsersModel.addInterests(userId, interests_id)
+      const result = await UsersModel.addInterests(userId, interestsList)
       res
         .status(200)
         .send({ message: 'interests attached to the user correctly' })

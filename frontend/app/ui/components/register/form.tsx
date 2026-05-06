@@ -2,21 +2,25 @@
 
 import InputField from '../common/input-field'
 import Image from 'next/image'
-import { authUser } from '@/app/lib/api/authUser'
+import { newUser } from '@/app/lib/api/signUpUser'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
-export default function LoginForm() {
+export default function RegisterForm() {
   const router = useRouter()
   // handleSubmit form
   async function handleSubmit(formData: FormData) {
     try {
-      const userInfo = {
-        identifier: formData.get('email') as string,
+      const userData = {
+        username: formData.get('username') as string,
+        email: formData.get('email') as string,
         password: formData.get('password') as string
       }
-      const response = await authUser(userInfo)
-      router.push('/your-trips')
+      // post para enviar los datos del nuevo usuario a la db
+      const response = await newUser(userData)
+
+      // redirige al usuario nuevo a seleccionar sus intereses
+      router.push('/interests')
     } catch (error) {
       alert(error)
     }
@@ -35,6 +39,14 @@ export default function LoginForm() {
           className="mx-auto mb-6 block" // Centrado horizontal y margen inferior
           alt="MT logo"
           priority // Recomendado para el logo (mejora el LCP)
+        />
+
+        <InputField
+          label="Nombre de usuario"
+          type="text"
+          id="username"
+          placeholder="usuario123"
+          errorMessage="Ese nombre de usuario ya existe"
         />
 
         <InputField
@@ -60,8 +72,8 @@ export default function LoginForm() {
           Entrar
         </button>
         <div className="justify-self-center pt-3">
-          <Link href="/register" className="text-sm text-blue-600 underline">
-            ¿No tienes una cuenta?
+          <Link href="/login" className="text-sm text-blue-600 underline">
+            ¿Ya tienes una cuenta?
           </Link>
         </div>
       </form>
