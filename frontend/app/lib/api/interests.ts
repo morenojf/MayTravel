@@ -2,7 +2,6 @@
 
 import { BASE_API_URL } from "../consts"
 import { cookies } from "next/headers"
-import { Interests } from "../interfaces/interests";
 import { translateInterests } from "../utils/translateInterests";
 
 // Adjuntar intereses a un usuario
@@ -53,6 +52,7 @@ export async function getUserInterests() {
 
 	const result = await response.json()
 	const translatedInt = translateInterests(result.interests)
+	if (translatedInt[0].id === null) return null
 	return translatedInt
 }
 
