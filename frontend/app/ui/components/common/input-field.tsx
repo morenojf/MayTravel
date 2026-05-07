@@ -1,5 +1,7 @@
 'use client'
 
+import { useEffect, useState } from 'react'
+
 interface InputFieldProps {
   label: string
   type: string
@@ -15,13 +17,28 @@ export default function InputField({
   placeholder,
   errorMessage
 }: InputFieldProps) {
+  const [isRequired, setIsRequired] = useState(true)
+
+  const [inputValue, setInputValue] = useState('')
+
+  // Calcular la fecha mínima: día siguiente al actual en formato YYYY-MM-DD
+  const getMinDate = () => {
+    const today = new Date()
+    const tomorrow = new Date(today)
+    tomorrow.setDate(today.getDate() + 1)
+    // Formato YYYY-MM-DD
+    const year = tomorrow.getFullYear()
+    const month = String(tomorrow.getMonth() + 1).padStart(2, '0')
+    const day = String(tomorrow.getDate()).padStart(2, '0')
+    return `${year}-${month}-${day}`
+  }
+
+  const minDate = type === 'date' ? getMinDate() : undefined
+
   return (
     <div className="flex flex-col mb-4">
       {/* Etiqueta del campo */}
-      <label
-        htmlFor={id}
-        className="mb-1 mt-3 text-sm font-semibold text-gray-700"
-      >
+      <label htmlFor={id} className="mt-3 ">
         {label}
       </label>
 
@@ -31,16 +48,15 @@ export default function InputField({
         id={id}
         name={id}
         placeholder={placeholder}
-        required
-        className="peer px-4 py-2 border border-gray-300 rounded-lg text-gray-900 
-                   focus:outline-none focus:ring-2 focus:ring-[#5EA4CB] focus:border-transparent 
-                   invalid:[&:not(:placeholder-shown)]:border-red-500"
+        min={minDate}
+        className="border p-2 rounded text-black mt-2"
+        onChange={(e) => {
+          setInputValue(e.target.value)
+          setIsRequired(false)
+        }}
       />
 
-      {/* El Mensaje de Error (El Reactor) */}
-      <p className="mt-1 text-sm text-red-500 invisible peer-invalid:[&:not(:placeholder-shown)]:visible">
-        {errorMessage}
-      </p>
+      {isRequired && <p className="text-sm text-red-500">{errorMessage}</p>}
     </div>
   )
 }
