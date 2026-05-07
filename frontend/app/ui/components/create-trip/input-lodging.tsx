@@ -12,6 +12,7 @@ interface InputFieldProps {
   placeholder?: string
   errorMessage: string
   coords?: { lat: string; lng: string } // Coordenadas de la ciudad
+  onLodgingSelect: (lat: number, lng: number) => void
 }
 
 export default function LodgingInput({
@@ -20,7 +21,8 @@ export default function LodgingInput({
   id,
   placeholder,
   errorMessage,
-  coords
+  coords,
+  onLodgingSelect
 }: InputFieldProps) {
   const [isMapOpen, setIsMapOpen] = useState(false)
   const [inputValue, setInputValue] = useState('')
@@ -106,6 +108,7 @@ export default function LodgingInput({
                   lat: place.lodging_lat,
                   lng: place.lodging_lng
                 })
+                onLodgingSelect(place.lodging_lat, place.lodging_lng)
                 setIsRequired(false)
               }}
               className="p-2 border border-gray-100 rounded hover:bg-orange-50 cursor-pointer text-sm"
@@ -167,6 +170,7 @@ export default function LodgingInput({
           selectedLocation={finalLodgingCoords}
           onSelectCoordinates={(lat, lng) => {
             setFinalLodgingCoords({ lat, lng })
+            onLodgingSelect(lat, lng)
             setIsRequired(false)
           }}
         />
