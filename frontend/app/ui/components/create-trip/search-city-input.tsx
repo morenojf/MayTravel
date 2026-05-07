@@ -118,11 +118,12 @@ export default function SearchCityInput({
       <label>{label}</label>
       <input
         type={type}
+        name={id}
         id={id}
         placeholder={placeholder}
         className="border p-2 rounded text-black mt-2"
-        value={inputValue}
         onChange={handleInputChange}
+        value={inputValue}
       />
       {isRequired && (
         <span className=" text-sm text-red-500">{errorMessage}</span>
