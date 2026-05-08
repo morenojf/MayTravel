@@ -7,10 +7,38 @@ export class OPService {
   static async getPois(interests, lat, lng) {
     // possible tags based on users_interests (Diccionario)
     const posibleI = {
-      'Dance hall': '"amenity"="nightclub"',
-      'Thematic Park': '"leisure"="park"',
-      Gamescon: '"leisure"="conventions"',
-      Restaurant: '"amenity"="restaurant"'
+      // --- CULTURA Y TURISMO ---
+      Museums: '"tourism"="museum"',
+      'Art Galleries': '"tourism"="art_gallery"',
+      'Historical Sites': '"historic"="monument"',
+      Castles: '"historic"="castle"',
+      Aquariums: '"tourism"="aquarium"',
+      Zoos: '"tourism"="zoo"',
+
+      // --- NATURALEZA Y AVENTURA ---
+      Beaches: '"natural"="beach"',
+      'Hiking Trails': '"route"="hiking"',
+      Viewpoints: '"tourism"="viewpoint"',
+      Parks: '"leisure"="park"',
+      'Nature Reserves': '"leisure"="nature_reserve"',
+      Mountains: '"natural"="peak"',
+
+      // --- ENTRETENIMIENTO Y OCIO ---
+      'Thematic Parks': '"tourism"="theme_park"',
+      Nightclubs: '"amenity"="nightclub"',
+      Cinemas: '"amenity"="cinema"',
+      'Shopping Malls': '"shop"="mall"',
+      Conventions: '"amenity"="conference_centre"',
+
+      // --- GASTRONOMÍA ---
+      Restaurants: '"amenity"="restaurant"',
+      Cafes: '"amenity"="cafe"',
+      Bars: '"amenity"="bar"',
+      Pubs: '"amenity"="pub"',
+
+      // --- OTROS RELEVANTES ---
+      'Religious Sites': '"amenity"="place_of_worship"',
+      Stadiums: '"leisure"="stadium"'
     }
 
     const RADIO = 5000

@@ -25,10 +25,29 @@ export class PoisService {
     // traducimos los intereses del usuario a las categorias que maneja la DB
 
     const posibleI = {
-      'Dance hall': 'nightclub',
-      'Thematic Park': 'park',
-      Gamescon: 'conventions',
-      Restaurant: 'restaurant'
+      Museums: 'museum',
+      'Art Galleries': 'artwork',
+      'Historical Sites': 'attraction',
+      Castles: 'castle',
+      Aquariums: 'aquarium',
+      Zoos: 'park',
+      Beaches: 'unknown',
+      'Hiking Trails': 'unknown',
+      Viewpoints: 'viewpoint',
+      Parks: 'park',
+      'Nature Reserves': 'nature_reserve',
+      Mountains: 'unknown',
+      'Thematic Parks': 'theme_park',
+      Nightclubs: 'nightclub',
+      Cinemas: 'cinema',
+      'Shopping Malls': 'unknown',
+      Conventions: 'unknown',
+      Restaurants: 'restaurant',
+      Cafes: 'cafe',
+      Bars: 'bar',
+      Pubs: 'pub',
+      'Religious Sites': 'place_of_worship',
+      Stadiums: 'stadium'
     }
 
     const categories = Object.keys(posibleI)
@@ -37,6 +56,7 @@ export class PoisService {
 
     // consultamos a la base de datos
     const result = await PoisModel.getNearby(lng, lat, categories, RADIO)
+
     return result
   }
 }
