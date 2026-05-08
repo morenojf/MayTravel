@@ -34,8 +34,8 @@ routing.put('/users/interests', UsersController.addInterests) // add/edit intere
 // trips-users (refactored)
 routing.get('/users/trips', TripsController.getByUser)
 
-// trips-generate
-routing.post('/users/:id/trips', TripsController.create)
+// trips-generate (create trip)
+routing.post('/users/trips', TripsController.create)
 
 // INTERESTS
 // managment (CRUD)

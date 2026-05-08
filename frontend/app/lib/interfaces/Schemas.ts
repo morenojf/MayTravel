@@ -1,9 +1,9 @@
 export interface TripData {
-	title: string, // Nombre de la ciudad
-	lat: number, // lat del hospedaje
-	lng: number, // lng del hospedaje
-	arrive_date: string, // fecha de llegada
-	leave_date: string // fecha de salida
+	title: string | null, // Nombre de la ciudad
+	lat: number | undefined, // lat del hospedaje
+	lng: number | undefined, // lng del hospedaje
+	arrive_date: string | null, // fecha de llegada
+	leave_date: string | null // fecha de salida
 }
 
 export interface UserInfo {

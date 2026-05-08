@@ -37,6 +37,11 @@ export class OPService {
       attempts++
       response = await fetch(OVERPASS_URL, {
         method: 'POST',
+        headers: {
+          'User-Agent': 'MayTravel/1.0 (fjmoreno2101@gmail.com)',
+          Accept: 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
         body: 'data=' + encodeURIComponent(query)
       })
     } while (!response.ok && attempts < MAX_ATTEMPS)
@@ -112,7 +117,9 @@ export class OPService {
       const safeAddress = element.address
         ? element.address.replace(/'/g, "''")
         : 'No especificado'
-      const safeHours = element.opening_hours.replace(/'/g, "''")
+      const safeHours = element.opening_hours
+        ? element.opening_hours.replace(/'/g, "''")
+        : 'No especificado'
 
       return `(${element.poi_id}, '${safeName}', '${safeAddress}', ST_SetSRID(ST_MakePoint(${element.lng}, ${element.lat}), 4326), '${element.category}', '${safeHours}', ${stay})`
     })

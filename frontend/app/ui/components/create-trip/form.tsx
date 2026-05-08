@@ -43,19 +43,17 @@ export default function CreateTripForm() {
 
     // este obj se va al backend.
     const tripData = {
-      title: formData.get('place'), // Nombre de la ciudad
+      title: String(formData.get('place')), // Nombre de la ciudad
       lat: lodgingCoords?.lat, // lat del hospedaje
       lng: lodgingCoords?.lng, // lng del hospedaje
       arrive_date: arrDate, // fecha de llegada
       leave_date: leaveDate // fecha de salida
     }
 
-    console.log(tripData)
-
-    // const itineraryData = await createTrip(tripData)
+    const itineraryData = await createTrip(tripData)
 
     // redirigimos a la nueva screen pasando el id del trip para volver a consultar a la API.
-    // router.push(`/trip-itinerary/${itineraryData?.trip_id}`)
+    router.push(`/trip-itinerary/${itineraryData?.trip_id}`)
   }
 
   return (

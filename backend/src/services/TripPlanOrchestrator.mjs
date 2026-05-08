@@ -17,17 +17,17 @@ export class TripPlan {
     const userDetails = await UsersService.getInterests(userId)
     const userInterests = userDetails.interests
     const interestsList = userInterests.map((element) => {
-      return element.interest_name
+      return element.name
     })
 
-    // 2. consultar el servicio de POI_Catalog para saber si existe lo que el user solicita
+    // 2. consultar el servicio de POI_Catalog (BD) para saber si existe lo que el user solicita
     let availablePois = await PoisService.getNearby(
       tripData.lng,
       tripData.lat,
       interestsList
     )
 
-    // si no encuentra nada, consultar a Overpass API y guardar en POI_catalog
+    // si no encuentra nada, consultar a Overpass API y guardar en POI_catalog (BD)
     if (!availablePois?.length) {
       const { lat, lng } = tripData
       // consulta la API overpass para tener POIS e introducirlos a la DB
