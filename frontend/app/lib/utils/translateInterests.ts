@@ -6,20 +6,67 @@ export function translateInterests(interests: Interests[]) {
 
 	const dictionary =
 		{
-			'Dance hall': 'Discoteca',
-			'Thematic Park': 'Parque de Diversiones',
-			'Gamescon': 'Conferencia de videojuegos',
-			'Restaurant': 'Restaurante'
+			// CULTURA Y TURISMO
+			'Museums': 'Museos',
+			'Art Galleries': 'Galerías de Arte',
+			'Historical Sites': 'Sitios Históricos',
+			'Castles': 'Castillos',
+			'Aquariums': 'Acuarios',
+			'Zoos': 'Zoológicos',
+
+			// NATURALEZA Y AVENTURA
+			'Beaches': 'Playas',
+			'Hiking Trails': 'Senderismo',
+			'Viewpoints': 'Miradores',
+			'Parks': 'Parques',
+			'Nature Reserves': 'Reservas Naturales',
+			'Mountains': 'Montañas',
+
+			// ENTRETENIMIENTO Y OCIO
+			'Thematic Parks': 'Parques Temáticos',
+			'Nightclubs': 'Discotecas',
+			'Cinemas': 'Cines',
+			'Shopping Malls': 'Centros Comerciales',
+			'Conventions': 'Convenciones',
+
+			// GASTRONOMÍA
+			'Restaurants': 'Restaurantes',
+			'Cafes': 'Cafeterías',
+			'Bars': 'Bares',
+			'Pubs': 'Pubs',
+
+			// OTROS
+			'Religious Sites': 'Sitios Religiosos',
+			'Stadiums': 'Estadios'
 		} as const
 
 	type DictionaryKey = keyof typeof dictionary;
 
 	const iconDictionary =
 		{
-			'Dance hall': 'Speaker',
-			'Thematic Park': 'FerrisWheel',
-			'Gamescon': 'Gamepad',
-			'Restaurant': 'Utensils'
+			'Museums': 'landmark',
+			'Art Galleries': 'palette',
+			'Historical Sites': 'land-plot',
+			'Castles': 'castle',
+			'Aquariums': 'fish',
+			'Zoos': 'cat',
+			'Beaches': 'tree-palm',
+			'Hiking Trails': 'backpack',
+			'Viewpoints': 'binoculars',
+			'Parks': 'tree-pine',
+			'Nature Reserves': 'trees',
+			'Mountains': 'mountain',
+			'Thematic Parks': 'ferris-wheel',
+			'Nightclubs': 'music',
+			'Cinemas': 'clapperboard',
+			'Shopping Malls': 'shopping-bag',
+			'Conventions': 'handshake',
+			'Restaurants': 'utensils',
+			'Cafes': 'coffee',
+			'Bars': 'beer',
+			'Pubs': 'bottle-wine',
+			'Religious Sites': 'church',
+			'Stadiums': 'trophy',
 		} as const
 
 	type IconDictionaryKey = keyof typeof dictionary;

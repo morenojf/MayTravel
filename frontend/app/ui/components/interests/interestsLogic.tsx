@@ -4,7 +4,33 @@ import { useState } from 'react'
 import { InterestCard } from '@/app/ui/components/common/interestsCards' // Ajusta la ruta
 import { Interests } from '@/app/lib/interfaces/interests'
 
-import { Speaker, FerrisWheel, Gamepad, Utensils } from 'lucide-react'
+import {
+  Speaker,
+  FerrisWheel,
+  Gamepad,
+  Utensils,
+  Castle,
+  LandPlot,
+  Palette,
+  Landmark,
+  Fish,
+  PawPrint,
+  TreePalm,
+  Backpack,
+  Binoculars,
+  TreePine,
+  Trees,
+  Mountain,
+  Music,
+  Clapperboard,
+  ShoppingBag,
+  Handshake,
+  Coffee,
+  Beer,
+  BottleWine,
+  Church,
+  Trophy
+} from 'lucide-react'
 
 import { attachInterests } from '@/app/lib/api/interests'
 
@@ -12,15 +38,34 @@ import { useRouter } from 'next/navigation'
 
 // traduccion de iconos texto plano a funciones ya que no se puede pasar funciones de servidor a cliente
 const iconComponents = {
-  Speaker: <Speaker />,
-  FerrisWheel: <FerrisWheel />,
-  Gamepad: <Gamepad />,
-  Utensils: <Utensils />
+  landmark: <Landmark />,
+  palette: <Palette />,
+  'land-plot': <LandPlot />,
+  castle: <Castle />,
+  fish: <Fish />,
+  cat: <PawPrint />,
+  'tree-palm': <TreePalm />,
+  backpack: <Backpack />,
+  binoculars: <Binoculars />,
+  'tree-pine': <TreePine />,
+  trees: <Trees />,
+  mountain: <Mountain />,
+  'ferris-wheel': <FerrisWheel />,
+  music: <Music />,
+  clapperboard: <Clapperboard />,
+  'shopping-bag': <ShoppingBag />,
+  handshake: <Handshake />,
+  utensils: <Utensils />,
+  coffee: <Coffee />,
+  beer: <Beer />,
+  'bottle-wine': <BottleWine />,
+  church: <Church />,
+  trophy: <Trophy />
 }
 
 interface InterestsList {
   interests: Interests[]
-  userInterests: Interests[]
+  userInterests: Interests[] | null
 }
 
 export default function InterestsLogic({

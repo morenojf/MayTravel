@@ -31,7 +31,7 @@ export async function attachInterests(interestsList: number[]) {
 
 }
 
-// obtener lista de intereses del usuario
+// obtener lista de intereses del usuario y adjuntarles un icono
 export async function getUserInterests() {
 
 	const cookieStore = await cookies();
@@ -56,7 +56,7 @@ export async function getUserInterests() {
 	return translatedInt
 }
 
-// Obtener lista de todos los intereses
+// Obtener lista de todos los intereses y adjuntarles un icono
 export default async function getInterests() {
 
 	const cookieStore = await cookies();

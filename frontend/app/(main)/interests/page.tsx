@@ -5,6 +5,8 @@ import getInterests, { getUserInterests } from '@/app/lib/api/interests'
 import InterestsLogic from '@/app/ui/components/interests/interestsLogic'
 
 export default async function InterestsPage() {
+  // al obtener esta informacion los servicios que se comunican con la api se encargan de traducir los intereses a español
+  // y adjuntarles un icono relacionado
   const userInterests = await getUserInterests()
   const intereses = await getInterests()
 
