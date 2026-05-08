@@ -3,7 +3,7 @@ import { NewUserInfo } from "../interfaces/Schemas"
 
 export async function newUser(userData: NewUserInfo) {
 
-	const response = await fetch(`${PUBLIC_BASE_API_URL}/auth/register`,
+	const response = await fetch(`${PUBLIC_BASE_API_URL}/register`,
 		{
 			method: 'post',
 			headers: {

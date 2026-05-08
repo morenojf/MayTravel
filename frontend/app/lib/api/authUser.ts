@@ -2,7 +2,7 @@ import { UserInfo } from "../interfaces/Schemas";
 import { PUBLIC_BASE_API_URL } from "../consts";
 
 export async function authUser(userInfo: UserInfo) {
-	const response = await fetch(`${PUBLIC_BASE_API_URL}/auth/login`,
+	const response = await fetch(`${PUBLIC_BASE_API_URL}/login`,
 		{
 			method: 'POST',
 			headers: {
