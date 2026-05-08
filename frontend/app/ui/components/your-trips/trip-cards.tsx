@@ -16,33 +16,29 @@ export default function TripCard(tripInfo: SingleTrip) {
   return (
     // Contenedor principal de la tarjeta con borde de enfoque (púrpura) y sombra suave
     <div
-      className="scale-80 flex-1  overflow-hidden rounded-xl border-2 border-transparent transition-all hover:border-orange-600 hover:shadow-lg focus:outline-none focus:ring-2"
+      className="flex flex-col rounded-xl border-2 border-transparent bg-white shadow-sm transition-all hover:border-orange-600 hover:shadow-lg focus:outline-none focus:ring-2 cursor-pointer overflow-hidden"
       onClick={() => handleClick(tripInfo)}
     >
-      {/* Contenedor de la Imagen con relación de aspecto (Ratio 3:2 aproximado) */}
-      <div className="relative aspect-[3/2] overflow-hidden rounded-t-lg bg-gray-100">
+      {/* CAMBIO AQUÍ: En lugar de h-full, usamos aspect-video (proporción 16:9) o h-48 para la imagen */}
+      <div className="relative w-full aspect-[4/3] bg-gray-100 sm:aspect-video">
         <Image
-          // Aquí usarías una URL de imagen dinámica. Por ahora, un placeholder.
-          // src={trip.imageUrl || "/images/placeholder-trip.jpg"}
-          src="/placeholder-trip.jpg" // Asegúrate de tener esta imagen en /public
-          alt={`Imagen del viaje:`}
+          src="/placeholder-trip.jpg"
+          alt={`Imagen del viaje: ${tripInfo.title}`}
           fill
           className="object-cover transition-transform duration-300 hover:scale-105"
-          sizes="316px"
+          // Optimización de carga de imagen en base al grid
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
           priority={false}
         />
       </div>
 
-      {/* Contenedor del Texto (Título y Fecha) con padding */}
-      <div className="bg-white p-5">
-        {/* Título del Viaje (e.g., 'Viaje a Mérida') */}
-        <h3 className="mb-1.5 text-lg font-semibold text-gray-900 line-clamp-1">
+      {/* Contenedor del Texto */}
+      <div className="p-4 flex flex-col justify-center">
+        <h3 className="mb-1 text-lg font-semibold text-gray-900 line-clamp-1">
           Viaje a {tripInfo.title}
         </h3>
 
-        {/* Fechas del Viaje (e.g., 'Dic 12 - Ene 21') */}
-        <p className="text-sm text-gray-600 font-medium">
-          {/* Aquí formatearías tus fechas (arrd y leavd) */}
+        <p className="text-sm font-medium text-gray-600">
           {formatDate(tripInfo.arrd)} - {formatDate(tripInfo.leavd)}
         </p>
       </div>

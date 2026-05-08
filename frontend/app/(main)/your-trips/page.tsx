@@ -23,10 +23,11 @@ export default async function TripGallery() {
       </div>
     )
   }
-  // 3. si tienes viajes mostrar componente de tarjetas
 
+  // 3. si tienes viajes mostrar componente de tarjetas
   return (
-    <div className="flex gap-1">
+    // CAMBIO AQUÍ: Usamos grid para forzar 4 columnas exactas y tener un gap uniforme
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       {userTrips.trips.map((trip: SingleTrip) => (
         <TripCard
           key={trip.id}
