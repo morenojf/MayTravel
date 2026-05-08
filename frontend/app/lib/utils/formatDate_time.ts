@@ -1,4 +1,4 @@
-// formatear fechase llegada y salida del viaje en itinerario (Ej: 7 abr - 13 abr)
+// formatear fechase llegada y salida del viaje en itinerario (Ej: 7 abr - 13 abr) (RECIBE FECHA-HORA EN FORMATO ISOSTRING)
 export const formatDate = (isoString: string) => {
 	const date = new Date(isoString);
 
@@ -8,7 +8,7 @@ export const formatDate = (isoString: string) => {
 	})
 }
 
-// formatear fechas de cada entrada en el acordeon
+// formatear fechas de cada entrada en el acordeon (RECIBE FECHA-HORA EN FORMATO ISOSTRING)
 export const alphaNumFormatDate = (isoString: string) => {
 	const date = new Date(isoString)
 
@@ -24,7 +24,7 @@ export const alphaNumFormatDate = (isoString: string) => {
 	return finalString
 }
 
-// formatear hora de llegada y salida de cada POI en las poiCards
+// formatear hora de llegada y salida de cada POI en las poiCards (RECIBE FECHA-HORA EN FORMATO ISOSTRING)
 export const formatTime = (isoString: string) => {
 	const date = new Date(isoString);
 
