@@ -8,7 +8,7 @@ export class UsersModel {
 
   static async getById(id) {
     const result = await db.query(
-      'SELECT id, role, username, email FROM users WHERE id = $1',
+      'SELECT id, role, username, email, profilePic FROM users WHERE id = $1',
       [id]
     )
     return result.rows
@@ -27,12 +27,8 @@ export class UsersModel {
     return result.rows
   }
 
-  static async updateUser(id, newInfo) {
-    const { username, password, email } = newInfo
-    const result = await db.query(
-      'UPDATE users SET username = $1, password = $2, email = $3 WHERE id = $4',
-      [username.toLowerCase(), password, email.toLowerCase(), id]
-    )
+  static async updateUser(query, values) {
+    const result = await db.query(query, values)
     return result
   }
 

@@ -22,7 +22,26 @@ export class UsersService {
     const userFound = await UsersModel.getById(id)
     if (!userFound.length) return null
 
-    return await UsersModel.updateUser(id, newInfo)
+    const keys = Object.keys(newInfo)
+    const values = Object.values(newInfo)
+
+    if (keys.length === 0) return null
+
+    // construimos la query a la db
+    const setClause = keys
+      .map((key, index) => `${key} = $${index + 1}`)
+      .join(', ')
+
+    values.push(id)
+
+    const query = `
+	UPDATE users 
+    SET ${setClause} 
+    WHERE id = $${values.length} 
+    RETURNING *;
+	`
+
+    return await UsersModel.updateUser(query, values)
   }
 
   static async getInterests(userId) {
