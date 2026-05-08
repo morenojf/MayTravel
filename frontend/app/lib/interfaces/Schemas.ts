@@ -21,5 +21,6 @@ export interface Profile {
 	username: string,
 	email: string,
 	role: string,
-	id: number
+	id: number,
+	profilepic: string | null
 }
