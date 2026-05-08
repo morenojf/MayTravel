@@ -38,15 +38,21 @@ export default function Navbar(userData: Profile) {
   }
 
   // funcion seleccion de opciones del menu
-  function handleSelect(option: string) {
+  async function handleSelect(option: string) {
     if (option === 'logout') {
-      logOut()
+      const result = await logOut()
+      console.log(result)
       route.push('/login')
     }
 
     if (option === 'editInterests') {
       route.push('/interests')
     }
+
+    if (option === 'options') {
+      route.push('/profile-configs')
+    }
+
     setIsMenuOpen(false)
   }
 
