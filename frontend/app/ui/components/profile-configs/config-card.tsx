@@ -2,8 +2,11 @@ import clsx from 'clsx'
 import { LucideIcon, AlertTriangle } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { ModalLayout } from './ModalLayout'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import logOut from '@/app/lib/utils/logout'
+import deleteAcc from '@/app/lib/api/deleteAcc'
+import insertProfilePic from '@/app/lib/api/updateUser'
+import Image from 'next/image'
 
 interface ConfigCard {
   icon?: LucideIcon
@@ -11,6 +14,8 @@ interface ConfigCard {
   configDescription: string
   ctaBtnName: string
   id: string
+  userName?: string
+  profilePic?: string | null
 }
 
 export default function ConfigCard({
@@ -18,16 +23,23 @@ export default function ConfigCard({
   configTitle,
   configDescription,
   ctaBtnName,
-  id
+  id,
+  userName,
+  profilePic
 }: ConfigCard) {
   const route = useRouter()
   type ModalType = 'image' | 'delete' | null
   const [activeModal, setActiveModal] = useState<ModalType>(null)
 
+  console.log(profilePic)
+
+  const inputRef = useRef<HTMLInputElement>(null)
+
   // Función auxiliar para cerrar
   const closeAllModales = () => setActiveModal(null)
 
-  function handleCta() {
+  // abrir modales
+  function openModals() {
     if (id === 'deleteAcc') {
       setActiveModal('delete')
     }
@@ -42,6 +54,28 @@ export default function ConfigCard({
     }
   }
 
+  // handlers confirmacion de accion
+  async function handleConfirmation() {
+    // elimina los datos del usuario en la base de datos
+    if (activeModal === 'delete') {
+      const data = await deleteAcc()
+      console.log(data)
+      route.push('/login')
+    }
+
+    if (activeModal === 'image') {
+      const urlValue = inputRef.current?.value
+
+      if (!urlValue) return alert('Debes ingresar una URL')
+
+      const insertedUrl = await insertProfilePic(urlValue)
+      setActiveModal(null)
+      route.refresh()
+      window.location.reload()
+      console.log(insertedUrl)
+    }
+  }
+
   return (
     <>
       {/* MODALES */}
@@ -53,15 +87,20 @@ export default function ConfigCard({
               <h2 className="text-lg font-semibold text-slate-900 text-center leading-tight">
                 Introduce la URL de tu nueva imagen de perfil
               </h2>
+              <p className=" text-sm text-slate-500 w-100 text-center leading-tight">
+                La url debe ser el link directo de la imagen <br />
+                <strong>(el que termina en .jpg o .png)</strong>
+              </p>
 
-              {/* Input con bordes redondeados consistentes */}
+              {/* INPUT */}
               <input
                 type="text"
                 className="w-full border border-slate-200 p-3 rounded-lg text-sm"
                 placeholder="https://tu-imagen.com/foto.jpg"
+                ref={inputRef}
               />
 
-              {/* Botones con el mismo diseño "Limpio" */}
+              {/* BOTONES */}
               <div className="w-full flex flex-col gap-3">
                 <button
                   onClick={closeAllModales}
@@ -71,7 +110,10 @@ export default function ConfigCard({
                 </button>
 
                 {/* Aquí usamos el naranja de MayTravel como acento positivo */}
-                <button className="w-full sm:w-auto px-4 py-2 text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors">
+                <button
+                  onClick={handleConfirmation}
+                  className="w-full sm:w-auto px-4 py-2 text-sm font-medium border bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors"
+                >
                   Actualizar imagen
                 </button>
               </div>
@@ -103,7 +145,10 @@ export default function ConfigCard({
                 >
                   No, mantener cuenta
                 </button>
-                <button className="w-full sm:w-auto px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors shadow-sm">
+                <button
+                  onClick={handleConfirmation}
+                  className="w-full sm:w-auto px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors shadow-sm"
+                >
                   Sí, eliminar cuenta
                 </button>
               </div>
@@ -111,17 +156,28 @@ export default function ConfigCard({
           </ModalLayout>
         )}
       </div>
-
       {/* FIN MODALES ------------------------------------------------------------------------------------------------------------*/}
 
       {/* Contenedor principal: items-center alinea verticalmente todo el renglón */}
       <div className="rounded-xl border border-slate-300 flex flex-row w-full p-4 items-center gap-4 shadow-sm mb-5">
         {/* Contenedor del Círculo/Icono */}
 
-        {!Icon && (
+        {profilePic === null && (
           <div className="flex-none w-16 h-16 rounded-full border border-slate-900 flex items-center justify-center">
-            <span className="text-2xl font-bold text-slate-900">F</span>
+            <span className="text-2xl font-bold text-slate-900">
+              {userName?.charAt(0).toUpperCase()}
+            </span>
           </div>
+        )}
+
+        {profilePic != null && (
+          <Image
+            src={profilePic}
+            width={50}
+            height={50}
+            alt="Perfil"
+            className="rounded-full   flex-shrink-0 aspect-square"
+          />
         )}
 
         {Icon && (
@@ -145,7 +201,7 @@ export default function ConfigCard({
               ? 'px-6 py-2 rounded-xl border text-red-600 border-red-600 font-bold hover:bg-red-200 transition-colors w-45'
               : 'px-6 py-2 rounded-xl border border-slate-900 font-bold hover:bg-slate-200 transition-colors w-45'
           )}
-          onClick={handleCta}
+          onClick={openModals}
         >
           {ctaBtnName}
         </button>
