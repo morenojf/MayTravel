@@ -18,7 +18,7 @@ export class TripsController {
         error: error.message || error
       })
 
-      res.status(500).send({ error: error.message })
+      res.status(200).send({ error: error.message })
     }
   }
 
