@@ -18,17 +18,12 @@ export const routing = Router()
 
 // USERS
 // managment (CRUD)
-routing.get('/users', UsersController.getAll)
-
-// get user basic data (username, role, email)
-routing.get('/profile', UsersController.getById)
-
-routing.post('/users', UsersController.create)
-// routing.delete('/users/:id', UsersController.delete)
-// routing.put('/users/:id', validateInfo, UsersController.editInfo)
-
+routing.get('/users', UsersController.getAll) // obtener todos los usuarios (admin)
+routing.get('/profile', UsersController.getById) // get user basic data (username, role, email)
+routing.post('/users', UsersController.create) // crear un nuevo usuario
+routing.delete('/users', UsersController.delete) // borrar un usuario
+routing.put('/users', UsersController.editInfo) // editar informacion de usuario
 routing.get('/users/interests', UsersController.getInterests) // get interests attached to an user
-
 routing.put('/users/interests', UsersController.addInterests) // add/edit interest to the loged in user
 
 // trips-users (refactored)
