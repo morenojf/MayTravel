@@ -141,14 +141,29 @@ export default function Navbar(userData: Profile) {
         {/* el menu se envuelve en un div con la foto de perfil para pocisionar a los dos juntos */}
         <div ref={menuContainerRef} className="relative">
           {/* Imagen de perfil con sombra y borde */}
-          <Image
-            src="/profileCat.jpg"
-            width={50}
-            height={50}
-            alt="Perfil"
-            className="rounded-full border-2 border-white shadow-md object-cover flex-shrink-0 aspect-square"
-            onClick={handleClick}
-          />
+
+          {userData.profilepic === null && (
+            <div
+              onClick={handleClick}
+              className="cursor-pointer flex-none w-12 h-12 rounded-full border border-slate-900 flex items-center justify-center transition-all duration-300 hover:bg-orange-600 group"
+            >
+              <span className="text-2xl font-bold text-slate-900 group-hover:text-white transition-colors">
+                {userData.username?.charAt(0).toUpperCase()}
+              </span>
+            </div>
+          )}
+
+          {userData.profilepic != null && (
+            <Image
+              src={userData.profilepic}
+              width={50}
+              height={50}
+              alt="Perfil"
+              className="rounded-full flex-shrink-0 aspect-square hover:border hover:border-2 hover:border-orange-600"
+              onClick={handleClick}
+            />
+          )}
+
           {/* Menu desplegable de opciones de perfil */}
           <div
             className={clsx(
