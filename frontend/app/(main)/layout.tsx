@@ -20,6 +20,7 @@ export default async function Layout({
         id={userData.id}
         role={userData.role}
         username={userData.username}
+        profilepic={userData.profilepic}
       />
       <main className="p-6">{children}</main>
     </div>
