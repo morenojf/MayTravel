@@ -22,7 +22,7 @@ export class UsersController {
         ? res.status(404).json({ error: `The user ID ${id} was not found` })
         : res.status(200).send(user[0])
     } catch (error) {
-      res.status(500).send({ error: error.message || error })
+      res.status(200).send({ error: error.message || error })
     }
   }
 
@@ -46,19 +46,19 @@ export class UsersController {
   // Eliminar usuario por ID
   static async delete(req, res) {
     try {
-      const id = req.params.id
+      const id = req.userId
       // eslint-disable-next-line no-unused-vars
       const deletedUser = await UsersModel.delete(id)
       res.status(200).send({ mssg: `User number ${id} deleted successfully` })
     } catch (error) {
-      res.status(500).send({ error: error.message || error })
+      res.status(200).send({ error: error.message || error })
     }
   }
 
   // Editar información de usuario
   static async editInfo(req, res) {
     try {
-      const id = req.params.id
+      const id = req.userId
       const newInfo = req.body
       const editedUser = await UsersService.editInfo(id, newInfo)
       editedUser == null
@@ -101,7 +101,25 @@ export class UsersController {
       const { username, email, password } = req.body
       // eslint-disable-next-line no-unused-vars
       const created = await UsersModel.create({ username, email, password })
-      res.status(200).send({ message: 'User registered succesfully' })
+      // luego de que se crea, comprueba que el usuario existe en la base de datos
+      const userData = await UsersService.auth(email, password)
+
+      // si el usuario que recien se creo, no existe en la bd retorna null
+      if (userData == null) {
+        res.status(401).send({ message: 'Credenciales inválidas' })
+        // si el usuario recientemente creado efectivamente existe genera el token
+      } else {
+        const accessToken = generateAccessToken(userData)
+
+        res
+          .cookie('token', accessToken, {
+            httpOnly: true,
+            secure: false,
+            sameSite: 'lax',
+            maxAge: 3600000 //duracion de una hora en milisegundos
+          })
+          .send({ message: 'User registered and loged-in succesfully' })
+      }
     } catch (error) {
       res.status(500).send({ error: error.message })
     }
