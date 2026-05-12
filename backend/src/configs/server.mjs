@@ -1,3 +1,4 @@
 import express from 'express'
-export const app = express()
-export const port = process.env.PORT || 4000
+const app = express()
+export const PORT = process.env.PORT || 4000
+export default app

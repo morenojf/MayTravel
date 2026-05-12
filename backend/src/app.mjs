@@ -1,5 +1,5 @@
 // importación de configuración del servidor
-import { app, port } from './configs/server.mjs'
+import { app, PORT } from './configs/server.mjs'
 import validateToken from './middlewares/auth.mjs'
 
 // traduccion de req.body a json
@@ -22,6 +22,8 @@ app.use(cookieParser())
 app.use('/auth', publicRouting)
 app.use('/api', validateToken, routing)
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Servidor local corriendo en http://localhost:${PORT}`)
+  })
+}
