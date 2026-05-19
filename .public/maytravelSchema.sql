@@ -10,7 +10,7 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL,
     email    VARCHAR(255) NOT NULL UNIQUE,
 	role     VARCHAR(10) NOT NULL DEFAULT 'user',
-	profilePic TEXT NOT NULL DEFAULT null,
+	profilePic TEXT DEFAULT null,
     
     PRIMARY KEY (id)
 );
